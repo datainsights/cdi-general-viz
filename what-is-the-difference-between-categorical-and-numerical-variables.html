@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 4 What is the difference between categorical and numerical variables? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 4 What is the difference between categorical and numerical variables? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 4 What is the difference between categorical and numerical variables? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-convert-variable-types-in-a-dataset.html"/>
+<link rel="next" href="how-do-you-summarize-numerical-and-categorical-variables.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="what-is-the-difference-between-categorical-and-numerical-variables" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Q&A 4</span> What is the difference between categorical and numerical variables?<a href="what-is-the-difference-between-categorical-and-numerical-variables.html#what-is-the-difference-between-categorical-and-numerical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-3" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Explanation<a href="what-is-the-difference-between-categorical-and-numerical-variables.html#explanation-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In data analysis, variables are typically classified into two major types:</p>
+<div id="categorical-variables" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> 🔷 Categorical Variables<a href="what-is-the-difference-between-categorical-and-numerical-variables.html#categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These represent groups, labels, or categories. They describe <strong>qualities</strong>, not quantities.</p>
+<ul>
+<li><p><strong>Nominal</strong>: Categories with no natural order<br />
+<em>Example</em>: <code>"red"</code>, <code>"blue"</code>, <code>"green"</code></p></li>
+<li><p><strong>Ordinal</strong>: Categories with a meaningful order<br />
+<em>Example</em>: <code>"low"</code>, <code>"medium"</code>, <code>"high"</code></p></li>
+</ul>
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="numerical-variables" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> 🔶 Numerical Variables<a href="what-is-the-difference-between-categorical-and-numerical-variables.html#numerical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These represent measurable quantities and describe <strong>how much</strong> or <strong>how many</strong>.</p>
+<ul>
+<li><p><strong>Discrete</strong>: Countable, whole-number values<br />
+<em>Example</em>: Number of children, cars, books</p></li>
+<li><p><strong>Continuous</strong>: Measurable on a scale; can take any value within a range<br />
+<em>Example</em>: Height, weight, temperature</p></li>
+</ul>
+<hr />
+<p>Correctly identifying variable types is critical. It informs the choice of:
+- Statistical methods (e.g., t-tests vs chi-squared tests)
+- Visualizations (e.g., histograms for continuous vs bar plots for categorical)
+- Feature encoding in machine learning (e.g., one-hot encoding for nominal variables)</p>
 </div>
-
-
-
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-convert-variable-types-in-a-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-summarize-numerical-and-categorical-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +445,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 3 How do you convert variable types in a dataset? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 3 How do you convert variable types in a dataset? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 3 How do you convert variable types in a dataset? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-inspect-variable-types-in-a-dataset.html"/>
+<link rel="next" href="what-is-the-difference-between-categorical-and-numerical-variables.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-convert-variable-types-in-a-dataset" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Q&A 3</span> How do you convert variable types in a dataset?<a href="how-do-you-convert-variable-types-in-a-dataset.html#how-do-you-convert-variable-types-in-a-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-2" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Explanation<a href="how-do-you-convert-variable-types-in-a-dataset.html#explanation-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before visualizing or modeling your data, it’s important to ensure that each variable has the correct type. For example:</p>
+<ul>
+<li>Categorical variables (like <code>cut</code>, <code>color</code>, <code>clarity</code>) should be treated as factors or categories<br />
+</li>
+<li>Numerical variables accidentally stored as strings should be converted to numeric types</li>
+</ul>
+<p>In this example, we’ll use a <strong>sample of 500 diamonds</strong> to demonstrate how to inspect and convert variable types where needed — a crucial step for grouped plots and modeling accuracy.</p>
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-1" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Python Code<a href="how-do-you-convert-variable-types-in-a-dataset.html#python-code-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-1" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb13-2"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-2" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb13-3"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-4" tabindex="-1"></a><span class="co"># Load and sample the diamonds dataset</span></span>
+<span id="cb13-5"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-5" tabindex="-1"></a>df_full <span class="op">=</span> sns.load_dataset(<span class="st">&quot;diamonds&quot;</span>)</span>
+<span id="cb13-6"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-6" tabindex="-1"></a>df <span class="op">=</span> df_full.sample(n<span class="op">=</span><span class="dv">500</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb13-7"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-7" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-8" tabindex="-1"></a><span class="co"># Convert selected columns to categorical</span></span>
+<span id="cb13-9"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-9" tabindex="-1"></a>categorical_cols <span class="op">=</span> [<span class="st">&quot;cut&quot;</span>, <span class="st">&quot;color&quot;</span>, <span class="st">&quot;clarity&quot;</span>]</span>
+<span id="cb13-10"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-10" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> categorical_cols:</span>
+<span id="cb13-11"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-11" tabindex="-1"></a>    df[col] <span class="op">=</span> df[col].astype(<span class="st">&quot;category&quot;</span>)</span>
+<span id="cb13-12"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-12" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-13" tabindex="-1"></a><span class="co"># Confirm data types</span></span>
+<span id="cb13-14"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-14" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;🔠 Updated Variable Types:</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb13-15"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb13-15" tabindex="-1"></a><span class="bu">print</span>(df.dtypes)</span></code></pre></div>
+<pre><code>🔠 Updated Variable Types:
+
+carat       float64
+cut        category
+color      category
+clarity    category
+depth       float64
+table       float64
+price         int64
+x           float64
+y           float64
+z           float64
+dtype: object</code></pre>
 </div>
-
-
-
+<div id="r-code-1" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> R Code<a href="how-do-you-convert-variable-types-in-a-dataset.html#r-code-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb15-2"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb15-3"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-3" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-4" tabindex="-1"></a><span class="co"># Load and sample the diamonds dataset</span></span>
+<span id="cb15-5"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb15-6"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb15-7"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-7" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">500</span>)</span>
+<span id="cb15-8"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-8" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-9" tabindex="-1"></a><span class="co"># Convert selected columns to factor</span></span>
+<span id="cb15-10"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-10" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb15-11"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-11" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-12"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-12" tabindex="-1"></a>    <span class="at">cut =</span> <span class="fu">as.factor</span>(cut),</span>
+<span id="cb15-13"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-13" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">as.factor</span>(color),</span>
+<span id="cb15-14"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-14" tabindex="-1"></a>    <span class="at">clarity =</span> <span class="fu">as.factor</span>(clarity)</span>
+<span id="cb15-15"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-15" tabindex="-1"></a>  )</span>
+<span id="cb15-16"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-16" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-17" tabindex="-1"></a><span class="co"># Confirm structure</span></span>
+<span id="cb15-18"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb15-18" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;🔠 Updated Variable Types:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>🔠 Updated Variable Types:</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="how-do-you-convert-variable-types-in-a-dataset.html#cb17-1" tabindex="-1"></a><span class="fu">str</span>(df)</span></code></pre></div>
+<pre><code>tibble [500 × 10] (S3: tbl_df/tbl/data.frame)
+ $ carat  : num [1:500] 0.39 1.12 0.51 0.52 0.28 1.01 0.4 0.9 0.33 0.71 ...
+ $ cut    : Ord.factor w/ 5 levels &quot;Fair&quot;&lt;&quot;Good&quot;&lt;..: 5 3 3 3 3 1 3 5 5 4 ...
+ $ color  : Ord.factor w/ 7 levels &quot;D&quot;&lt;&quot;E&quot;&lt;&quot;F&quot;&lt;&quot;G&quot;&lt;..: 6 4 4 1 2 3 1 1 4 4 ...
+ $ clarity: Ord.factor w/ 8 levels &quot;I1&quot;&lt;&quot;SI2&quot;&lt;&quot;SI1&quot;&lt;..: 6 2 6 5 6 3 5 3 7 4 ...
+ $ depth  : num [1:500] 60.8 63.3 62.9 62.5 61.4 67.2 60.8 62.1 62 62.1 ...
+ $ table  : num [1:500] 56 58 57 57 55 60 59 57 55 62 ...
+ $ price  : int [1:500] 849 4478 1750 1829 612 4276 954 4523 838 2623 ...
+ $ x      : num [1:500] 4.74 6.7 5.06 5.11 4.22 6.06 4.74 6.18 4.45 5.71 ...
+ $ y      : num [1:500] 4.76 6.63 5.12 5.16 4.25 6 4.76 6.25 4.49 5.65 ...
+ $ z      : num [1:500] 2.89 4.22 3.2 3.21 2.6 4.05 2.89 3.86 2.77 3.53 ...</code></pre>
+<blockquote>
+<p>✅ Ensuring correct variable types improves how your data is visualized, summarized, and modeled — especially when working with grouped plots or categorical aesthetics.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-inspect-variable-types-in-a-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="what-is-the-difference-between-categorical-and-numerical-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +494,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

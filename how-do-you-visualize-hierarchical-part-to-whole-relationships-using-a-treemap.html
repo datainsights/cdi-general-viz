@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 32 How do you visualize hierarchical part-to-whole relationships using a treemap? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 32 How do you visualize hierarchical part-to-whole relationships using a treemap? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 32 How do you visualize hierarchical part-to-whole relationships using a treemap? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html"/>
+<link rel="next" href="how-do-you-visualize-overlaps-using-a-venn-diagram.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap" class="section level1 hasAnchor" number="32">
+<h1><span class="header-section-number">Q&A 32</span> How do you visualize hierarchical part-to-whole relationships using a treemap?<a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-31" class="section level2 hasAnchor" number="32.1">
+<h2><span class="header-section-number">32.1</span> Explanation<a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#explanation-31" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>treemap</strong> displays hierarchical data as nested rectangles, where:</p>
+<ul>
+<li><strong>Size</strong> represents a value (e.g., frequency or count)</li>
+<li><strong>Color</strong> can encode an additional group</li>
+<li><strong>Nested rectangles</strong> reflect categories and subcategories</li>
+</ul>
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-interactive" class="section level2 hasAnchor" number="32.2">
+<h2><span class="header-section-number">32.2</span> Python Code — Interactive<a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#python-code-interactive" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb89-2"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-2" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb89-3"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-3" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-4" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb89-5"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-5" tabindex="-1"></a>    <span class="st">&quot;group&quot;</span>: [<span class="st">&quot;Setosa&quot;</span>, <span class="st">&quot;Setosa&quot;</span>, <span class="st">&quot;Versicolor&quot;</span>, <span class="st">&quot;Versicolor&quot;</span>, <span class="st">&quot;Virginica&quot;</span>, <span class="st">&quot;Virginica&quot;</span>],</span>
+<span id="cb89-6"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-6" tabindex="-1"></a>    <span class="st">&quot;subgroup&quot;</span>: [<span class="st">&quot;Short&quot;</span>, <span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Short&quot;</span>, <span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Short&quot;</span>, <span class="st">&quot;Long&quot;</span>],</span>
+<span id="cb89-7"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-7" tabindex="-1"></a>    <span class="st">&quot;value&quot;</span>: [<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">35</span>]</span>
+<span id="cb89-8"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-8" tabindex="-1"></a>})</span>
+<span id="cb89-9"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-9" tabindex="-1"></a></span>
+<span id="cb89-10"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-10" tabindex="-1"></a>fig <span class="op">=</span> px.treemap(data, path<span class="op">=</span>[<span class="st">&quot;group&quot;</span>, <span class="st">&quot;subgroup&quot;</span>], values<span class="op">=</span><span class="st">&quot;value&quot;</span>, color<span class="op">=</span><span class="st">&quot;group&quot;</span>,</span>
+<span id="cb89-11"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-11" tabindex="-1"></a>                 title<span class="op">=</span><span class="st">&quot;Interactive Treemap of Iris Subgroups by Plotly&quot;</span>)</span>
+<span id="cb89-12"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb89-12" tabindex="-1"></a>fig.show()</span></code></pre></div>
+<blockquote>
+<p>⚠️ Interactive treemaps using plotly.express don’t appear in PDFs. Use static alternatives for printable outputs.</p>
+</blockquote>
 </div>
-
-
-
+<div id="python-code-static" class="section level2 hasAnchor" number="32.3">
+<h2><span class="header-section-number">32.3</span> Python Code — Static<a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#python-code-static" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For use in <strong>PDF or non-browser reports</strong>, static treemaps built with <code>squarify</code> are ideal.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb90-1"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb90-2"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb90-3"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-3" tabindex="-1"></a><span class="im">import</span> squarify</span>
+<span id="cb90-4"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-4" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-5" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb90-6"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-6" tabindex="-1"></a>    <span class="st">&quot;label&quot;</span>: [<span class="st">&quot;Setosa Short&quot;</span>, <span class="st">&quot;Setosa Long&quot;</span>, <span class="st">&quot;Versicolor Short&quot;</span>, <span class="st">&quot;Versicolor Long&quot;</span>, <span class="st">&quot;Virginica Short&quot;</span>, <span class="st">&quot;Virginica Long&quot;</span>],</span>
+<span id="cb90-7"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-7" tabindex="-1"></a>    <span class="st">&quot;value&quot;</span>: [<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">35</span>]</span>
+<span id="cb90-8"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-8" tabindex="-1"></a>})</span>
+<span id="cb90-9"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-9" tabindex="-1"></a></span>
+<span id="cb90-10"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-10" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.viridis_r([i <span class="op">/</span> <span class="bu">float</span>(<span class="bu">len</span>(data)) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(data))])</span>
+<span id="cb90-11"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-11" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb90-12"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-12" tabindex="-1"></a>squarify.plot(sizes<span class="op">=</span>data[<span class="st">&quot;value&quot;</span>], label<span class="op">=</span>data[<span class="st">&quot;label&quot;</span>], color<span class="op">=</span>colors, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb90-13"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-13" tabindex="-1"></a>plt.axis(<span class="st">&quot;off&quot;</span>)</span>
+<span id="cb90-14"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-14" tabindex="-1"></a>plt.title(<span class="st">&quot;Static Treemap of Iris Subgroups&quot;</span>)</span>
+<span id="cb90-15"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-15" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb90-16"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb90-16" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_90_0.png" /></p>
+</div>
+<div id="r-code-26" class="section level2 hasAnchor" number="32.4">
+<h2><span class="header-section-number">32.4</span> R Code<a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#r-code-26" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb91-1" tabindex="-1"></a><span class="fu">library</span>(treemap)</span>
+<span id="cb91-2"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb91-2" tabindex="-1"></a></span>
+<span id="cb91-3"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb91-3" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb91-4"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb91-4" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">&quot;Setosa&quot;</span>, <span class="st">&quot;Setosa&quot;</span>, <span class="st">&quot;Versicolor&quot;</span>, <span class="st">&quot;Versicolor&quot;</span>, <span class="st">&quot;Virginica&quot;</span>, <span class="st">&quot;Virginica&quot;</span>),</span>
+<span id="cb91-5"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb91-5" tabindex="-1"></a>  <span class="at">subgroup =</span> <span class="fu">c</span>(<span class="st">&quot;Short&quot;</span>, <span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Short&quot;</span>, <span class="st">&quot;Long&quot;</span>, <span class="st">&quot;Short&quot;</span>, <span class="st">&quot;Long&quot;</span>),</span>
+<span id="cb91-6"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb91-6" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">15</span>, <span class="dv">35</span>)</span>
+<span id="cb91-7"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb91-7" tabindex="-1"></a>)</span>
+<span id="cb91-8"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb91-8" tabindex="-1"></a></span>
+<span id="cb91-9"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb91-9" tabindex="-1"></a><span class="fu">treemap</span>(data, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;group&quot;</span>, <span class="st">&quot;subgroup&quot;</span>), <span class="at">vSize =</span> <span class="st">&quot;value&quot;</span>,</span>
+<span id="cb91-10"><a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html#cb91-10" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;index&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Treemap of Iris Subgroups&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<blockquote>
+<p>✅ Static treemaps are ideal for printed or PDF outputs and help visualize complex category structures compactly.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +481,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

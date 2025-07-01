@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 6 What are the most effective plots for comparing values across categories? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 6 What are the most effective plots for comparing values across categories? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 6 What are the most effective plots for comparing values across categories? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-summarize-numerical-and-categorical-variables.html"/>
+<link rel="next" href="how-do-you-visualize-category-counts-using-a-bar-plot.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="what-are-the-most-effective-plots-for-comparing-values-across-categories" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Q&A 6</span> What are the most effective plots for comparing values across categories?<a href="what-are-the-most-effective-plots-for-comparing-values-across-categories.html#what-are-the-most-effective-plots-for-comparing-values-across-categories" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-5" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Explanation<a href="what-are-the-most-effective-plots-for-comparing-values-across-categories.html#explanation-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before diving into specific charts, it’s helpful to understand the <strong>landscape of visualization tools</strong> available when comparing a <strong>numeric variable</strong> across different <strong>groups</strong> (i.e., categorical levels).</p>
+<p>Depending on what insight you’re after — distribution shape, summary statistics, or raw values — the best choice will vary.</p>
+<div id="common-visualization-types" class="section level3 unnumbered hasAnchor">
+<h3>🔹 Common Visualization Types<a href="what-are-the-most-effective-plots-for-comparing-values-across-categories.html#common-visualization-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="23%" />
+<col width="51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Plot Type</th>
+<th>Shows Distribution</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Bar Plot</strong></td>
+<td>❌ No</td>
+<td>Comparing total counts or group means</td>
+</tr>
+<tr class="even">
+<td><strong>Histogram</strong></td>
+<td>✅ Yes (1 group)</td>
+<td>Viewing frequency distribution</td>
+</tr>
+<tr class="odd">
+<td><strong>Density Plot</strong></td>
+<td>✅ Yes</td>
+<td>Smooth shape of distribution</td>
+</tr>
+<tr class="even">
+<td><strong>Box Plot</strong></td>
+<td>✅ Yes</td>
+<td>Spread, center, and outliers</td>
+</tr>
+<tr class="odd">
+<td><strong>Violin Plot</strong></td>
+<td>✅ Yes</td>
+<td>Shape + quartiles</td>
+</tr>
+<tr class="even">
+<td><strong>Ridge Plot</strong></td>
+<td>✅ Yes</td>
+<td>Comparing shapes across many groups</td>
+</tr>
+<tr class="odd">
+<td><strong>Strip Plot</strong></td>
+<td>✅ Yes</td>
+<td>Raw points (ideal for small datasets)</td>
+</tr>
+<tr class="even">
+<td><strong>Swarm Plot</strong></td>
+<td>✅ Yes</td>
+<td>Raw data with spacing</td>
+</tr>
+<tr class="odd">
+<td><strong>Dot Plot</strong></td>
+<td>❌ Summary only</td>
+<td>Central tendency with optional error bars</td>
+</tr>
+<tr class="even">
+<td><strong>Bar + Error Bars</strong></td>
+<td>❌ Summary only</td>
+<td>Means with uncertainty (CI/SE bars)</td>
+</tr>
+</tbody>
+</table>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="choosing-the-right-plot" class="section level3 unnumbered hasAnchor">
+<h3>📌 Choosing the Right Plot<a href="what-are-the-most-effective-plots-for-comparing-values-across-categories.html#choosing-the-right-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ask yourself:</p>
+<ul>
+<li>How many <strong>groups</strong> are you comparing?<br />
+</li>
+<li>Is the dataset <strong>small or large</strong>?<br />
+</li>
+<li>Do you want to show <strong>individual points</strong> or a <strong>summary</strong>?<br />
+</li>
+<li>Is <strong>distribution shape</strong> important?</li>
+</ul>
+<p>Start with simple visuals like bar plots and box plots. Use richer plots (like violin or ridge) when you want to uncover deeper patterns.</p>
+<hr />
+<blockquote>
+<p>✅ <strong>Takeaway:</strong> Choosing the right visual makes patterns across categories easier to see — and ensures your insights are both accurate and easy to communicate.</p>
+</blockquote>
 </div>
-
-
-
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-summarize-numerical-and-categorical-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-visualize-category-counts-using-a-bar-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +509,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

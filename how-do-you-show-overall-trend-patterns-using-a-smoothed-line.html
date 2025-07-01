@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 20 How do you show overall trend patterns using a smoothed line? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 20 How do you show overall trend patterns using a smoothed line? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 20 How do you show overall trend patterns using a smoothed line? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html"/>
+<link rel="next" href="how-do-you-visualize-patterns-and-relationships-in-multivariate-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,13 +376,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-show-overall-trend-patterns-using-a-smoothed-line" class="section level1 hasAnchor" number="20">
+<h1><span class="header-section-number">Q&A 20</span> How do you show overall trend patterns using a smoothed line?<a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#how-do-you-show-overall-trend-patterns-using-a-smoothed-line" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-19" class="section level2 hasAnchor" number="20.1">
+<h2><span class="header-section-number">20.1</span> Explanation<a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#explanation-19" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>smoothed trend line</strong> is used to show the underlying relationship between two continuous variables. It’s useful when data is noisy and you want to see:</p>
+<ul>
+<li>General <strong>direction of change</strong><br />
+</li>
+<li>Nonlinear <strong>patterns</strong><br />
+</li>
+<li>Local <strong>averages</strong> (using LOESS or regression smoothing)</li>
+</ul>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-16" class="section level2 hasAnchor" number="20.2">
+<h2><span class="header-section-number">20.2</span> Python Code<a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#python-code-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb65-2"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb65-3"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb65-4"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-4" tabindex="-1"></a></span>
+<span id="cb65-5"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb65-6"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-6" tabindex="-1"></a>diamonds <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb65-7"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-7" tabindex="-1"></a></span>
+<span id="cb65-8"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-8" tabindex="-1"></a><span class="co"># Smoothed trend line</span></span>
+<span id="cb65-9"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-9" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb65-10"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-10" tabindex="-1"></a>sns.regplot(data<span class="op">=</span>diamonds, x<span class="op">=</span><span class="st">&quot;carat&quot;</span>, y<span class="op">=</span><span class="st">&quot;price&quot;</span>, lowess<span class="op">=</span><span class="va">True</span>, scatter_kws<span class="op">=</span>{<span class="st">&quot;alpha&quot;</span>: <span class="fl">0.4</span>}, line_kws<span class="op">=</span>{<span class="st">&quot;color&quot;</span>: <span class="st">&quot;#D55E00&quot;</span>})</span>
+<span id="cb65-11"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-11" tabindex="-1"></a>plt.title(<span class="st">&quot;Smoothed Trend: Carat vs Price&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb65-12"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-12" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Carat&quot;</span>)</span>
+<span id="cb65-13"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-13" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Price&quot;</span>)</span>
+<span id="cb65-14"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-14" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb65-15"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb65-15" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_53_0.png" /></p>
+</div>
+<div id="r-code-16" class="section level2 hasAnchor" number="20.3">
+<h2><span class="header-section-number">20.3</span> R Code<a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#r-code-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb66-2"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb66-3"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-3" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-4" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb66-5"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-5" tabindex="-1"></a>diamonds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb66-6"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-6" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-7" tabindex="-1"></a><span class="co"># LOESS smoothed line</span></span>
+<span id="cb66-8"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-8" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb66-9"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-9" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb66-10"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-10" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;loess&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;#D55E00&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-11"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb66-12"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Smoothed Trend: Carat vs Price&quot;</span>,</span>
+<span id="cb66-13"><a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html#cb66-13" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Carat&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Price&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Smoothed trend lines</strong> reveal underlying patterns in noisy data. Use them to identify nonlinear growth or saturation points that raw scatter plots may hide.</p>
+</blockquote>
+</div>
 </div>
 
 
@@ -392,8 +439,8 @@ Last updated: July 01, 2025</div></em></h2>
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-visualize-patterns-and-relationships-in-multivariate-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +471,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

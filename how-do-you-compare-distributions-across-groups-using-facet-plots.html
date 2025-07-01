@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 23 How do you compare distributions across groups using facet plots? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 23 How do you compare distributions across groups using facet plots? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 23 How do you compare distributions across groups using facet plots? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html"/>
+<link rel="next" href="how-do-you-enhance-scatter-plots-by-adding-group-color-and-trend-lines.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-compare-distributions-across-groups-using-facet-plots" class="section level1 hasAnchor" number="23">
+<h1><span class="header-section-number">Q&A 23</span> How do you compare distributions across groups using facet plots?<a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#how-do-you-compare-distributions-across-groups-using-facet-plots" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-22" class="section level2 hasAnchor" number="23.1">
+<h2><span class="header-section-number">23.1</span> Explanation<a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#explanation-22" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Facet plots</strong> allow you to split your data into <strong>multiple panels</strong> based on a categorical variable, making it easier to compare group-specific distributions or relationships without overlap.</p>
+<p>Unlike standard plots that layer everything into one axis, facet plots:
+- Create <strong>one plot per group</strong>, arranged side by side or in a grid<br />
+- Highlight <strong>differences in shape, spread, or skew</strong> between categories<br />
+- Work well with <strong>histograms</strong>, <strong>KDE plots</strong>, <strong>scatter plots</strong>, and more</p>
+<p>They’re useful for:
+- Comparing <strong>distributions</strong> (e.g., KDE or histograms across species or cut)
+- Analyzing <strong>trends</strong> across subgroups
+- Preventing overplotting in <strong>dense datasets</strong></p>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-18" class="section level2 hasAnchor" number="23.2">
+<h2><span class="header-section-number">23.2</span> Python Code<a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#python-code-18" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb69-2"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb69-3"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb69-4"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-4" tabindex="-1"></a></span>
+<span id="cb69-5"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-5" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb69-6"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-6" tabindex="-1"></a>diamonds <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb69-7"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-7" tabindex="-1"></a></span>
+<span id="cb69-8"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-8" tabindex="-1"></a><span class="co"># Faceted histogram by &#39;cut&#39;</span></span>
+<span id="cb69-9"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-9" tabindex="-1"></a>sns.displot(data<span class="op">=</span>diamonds, x<span class="op">=</span><span class="st">&quot;price&quot;</span>, col<span class="op">=</span><span class="st">&quot;cut&quot;</span>, bins<span class="op">=</span><span class="dv">30</span>, color<span class="op">=</span><span class="st">&quot;steelblue&quot;</span>, aspect<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb69-10"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-10" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb69-11"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-11" tabindex="-1"></a>plt.show()</span>
+<span id="cb69-12"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-12" tabindex="-1"></a></span>
+<span id="cb69-13"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-13" tabindex="-1"></a><span class="co"># Faceted KDE plot with fill</span></span>
+<span id="cb69-14"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-14" tabindex="-1"></a>sns.displot(data<span class="op">=</span>diamonds, x<span class="op">=</span><span class="st">&quot;price&quot;</span>, col<span class="op">=</span><span class="st">&quot;cut&quot;</span>, kind<span class="op">=</span><span class="st">&quot;kde&quot;</span>, fill<span class="op">=</span><span class="va">True</span>, height<span class="op">=</span><span class="dv">3</span>, aspect<span class="op">=</span><span class="dv">1</span>, color<span class="op">=</span><span class="st">&quot;orchid&quot;</span>)</span>
+<span id="cb69-15"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-15" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb69-16"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb69-16" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_60_0.png" /></p>
+<p><img src="01-2-viz_files/01-2-viz_60_1.png" /></p>
 </div>
-
-
-
+<div id="r-code-18" class="section level2 hasAnchor" number="23.3">
+<h2><span class="header-section-number">23.3</span> R Code<a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#r-code-18" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb70-2"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb70-3"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-3" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-4" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb70-5"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-5" tabindex="-1"></a>diamonds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb70-6"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-6" tabindex="-1"></a></span>
+<span id="cb70-7"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-7" tabindex="-1"></a><span class="co"># Histogram faceted by cut</span></span>
+<span id="cb70-8"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-8" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
+<span id="cb70-9"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-9" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb70-10"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cut, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb70-11"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb70-12"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb70-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Price Distribution by Cut&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb71-1" tabindex="-1"></a><span class="co"># KDE faceted by cut</span></span>
+<span id="cb71-2"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb71-2" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
+<span id="cb71-3"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb71-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">&quot;orchid&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb71-4"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb71-4" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>cut, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb71-5"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb71-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb71-6"><a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html#cb71-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Smoothed Price Distribution by Cut&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Facet plots</strong> are ideal for comparing group-specific patterns across a categorical variable. They prevent clutter and make distribution differences easier to detect than overlapping in a single plot.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-enhance-scatter-plots-by-adding-group-color-and-trend-lines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +477,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

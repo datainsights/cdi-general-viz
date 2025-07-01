@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 16 How do you visualize a smoothed distribution with a density plot? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 16 How do you visualize a smoothed distribution with a density plot? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 16 How do you visualize a smoothed distribution with a density plot? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-show-frequency-patterns-using-a-histogram.html"/>
+<link rel="next" href="how-do-you-visualize-two-categorical-variables-with-a-grouped-bar-plot.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Q&A 16</span> How do you visualize a smoothed distribution with a density plot?<a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#how-do-you-visualize-a-smoothed-distribution-with-a-density-plot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-15" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Explanation<a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#explanation-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>density plot</strong> shows the <strong>probability density</strong> of a continuous variable using a smoothed curve. Compared to histograms, it offers:</p>
+<ul>
+<li>A more <strong>refined view</strong> of distribution shape<br />
+</li>
+<li>Insight into <strong>skewness</strong>, <strong>peaks</strong>, and <strong>spread</strong><br />
+</li>
+<li>Easy group comparison using <strong>hue</strong> or <strong>facets</strong></li>
+</ul>
+<p>For grouped densities (e.g., price by cut), you can:</p>
+<ul>
+<li>Use <strong>fill and hue</strong> for comparison<br />
+</li>
+<li>Overlay multiple groups for contrast<br />
+</li>
+<li>Normalize to show <strong>relative densities</strong></li>
+</ul>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-12" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Python Code<a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#python-code-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb55-2"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb55-3"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb55-4"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-4" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb55-6"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-6" tabindex="-1"></a>diamonds <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb55-7"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-7" tabindex="-1"></a></span>
+<span id="cb55-8"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-8" tabindex="-1"></a><span class="co"># Set style</span></span>
+<span id="cb55-9"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-9" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">&quot;white&quot;</span>)</span>
+<span id="cb55-10"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-10" tabindex="-1"></a></span>
+<span id="cb55-11"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-11" tabindex="-1"></a><span class="co"># Density plot with hue</span></span>
+<span id="cb55-12"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-12" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb55-13"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-13" tabindex="-1"></a>sns.kdeplot(data<span class="op">=</span>diamonds, x<span class="op">=</span><span class="st">&quot;price&quot;</span>, hue<span class="op">=</span><span class="st">&quot;cut&quot;</span>, fill<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.6</span>, palette<span class="op">=</span><span class="st">&quot;Set2&quot;</span>, common_norm<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb55-14"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-14" tabindex="-1"></a>plt.title(<span class="st">&quot;Density Plot of Diamond Price by Cut&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb55-15"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-15" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Price&quot;</span>)</span>
+<span id="cb55-16"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-16" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Density&quot;</span>)</span>
+<span id="cb55-17"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-17" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb55-18"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb55-18" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_41_0.png" /></p>
 </div>
-
-
-
+<div id="r-code-12" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> R Code<a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#r-code-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb56-2"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb56-3"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-3" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-4" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb56-5"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-5" tabindex="-1"></a>diamonds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb56-6"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-6" tabindex="-1"></a></span>
+<span id="cb56-7"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-7" tabindex="-1"></a><span class="co"># Density plot</span></span>
+<span id="cb56-8"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-8" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">fill =</span> cut)) <span class="sc">+</span></span>
+<span id="cb56-9"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-9" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb56-10"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-10" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb56-11"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb56-12"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Density Plot of Diamond Price by Cut&quot;</span>,</span>
+<span id="cb56-13"><a href="how-do-you-visualize-a-smoothed-distribution-with-a-density-plot.html#cb56-13" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Price&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Density plots</strong> provide a smooth view of distributions. They are excellent for comparing shape, spread, and modality across groups—especially when overlaid with vibrant palettes.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-show-frequency-patterns-using-a-histogram.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-visualize-two-categorical-variables-with-a-grouped-bar-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +479,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

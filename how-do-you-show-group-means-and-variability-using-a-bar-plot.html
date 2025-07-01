@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 13 How do you show group means and variability using a bar plot? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 13 How do you show group means and variability using a bar plot? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 13 How do you show group means and variability using a bar plot? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html"/>
+<link rel="next" href="how-do-you-show-group-summaries-using-a-dot-plot.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-show-group-means-and-variability-using-a-bar-plot" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Q&A 13</span> How do you show group means and variability using a bar plot?<a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#how-do-you-show-group-means-and-variability-using-a-bar-plot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-12" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Explanation<a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#explanation-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>bar plot with error bars</strong> summarizes numerical data by showing:</p>
+<ul>
+<li><strong>Mean</strong> value for each category as a bar<br />
+</li>
+<li><strong>Error bars</strong> representing variability (e.g., standard deviation or standard error)</li>
+</ul>
+<p>This is ideal for comparing central tendencies between groups, especially when:</p>
+<ul>
+<li>You’ve already summarized your data<br />
+</li>
+<li>You want to <strong>highlight differences in means</strong><br />
+</li>
+<li>Distribution details (e.g., skewness, modality) are <strong>less important</strong></li>
+</ul>
+<p>Adding colors using <code>hue</code> and modern palettes enhances readability and prevents warnings.</p>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-9" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Python Code<a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#python-code-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb47-2"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb47-3"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb47-4"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-4" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb47-6"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-6" tabindex="-1"></a>iris <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb47-7"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-7" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-8" tabindex="-1"></a><span class="co"># Set style</span></span>
+<span id="cb47-9"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-9" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">&quot;whitegrid&quot;</span>)</span>
+<span id="cb47-10"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-10" tabindex="-1"></a></span>
+<span id="cb47-11"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-11" tabindex="-1"></a><span class="co"># Bar plot with error bars (standard deviation), hue to avoid warnings</span></span>
+<span id="cb47-12"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-12" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb47-13"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-13" tabindex="-1"></a>sns.barplot(</span>
+<span id="cb47-14"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-14" tabindex="-1"></a>    data<span class="op">=</span>iris,</span>
+<span id="cb47-15"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-15" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;species&quot;</span>,</span>
+<span id="cb47-16"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-16" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;sepal_length&quot;</span>,</span>
+<span id="cb47-17"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-17" tabindex="-1"></a>    hue<span class="op">=</span><span class="st">&quot;species&quot;</span>,</span>
+<span id="cb47-18"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-18" tabindex="-1"></a>    palette<span class="op">=</span><span class="st">&quot;Set2&quot;</span>,</span>
+<span id="cb47-19"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-19" tabindex="-1"></a>    ci<span class="op">=</span><span class="st">&quot;sd&quot;</span>,</span>
+<span id="cb47-20"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-20" tabindex="-1"></a>    errorbar<span class="op">=</span><span class="st">&quot;sd&quot;</span>,</span>
+<span id="cb47-21"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-21" tabindex="-1"></a>    capsize<span class="op">=</span><span class="fl">0.1</span></span>
+<span id="cb47-22"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-22" tabindex="-1"></a>)</span>
+<span id="cb47-23"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-23" tabindex="-1"></a>plt.title(<span class="st">&quot;Bar Plot with Error Bars: Sepal Length by Species&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb47-24"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-24" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb47-25"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-25" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Mean Sepal Length ± SD&quot;</span>)</span>
+<span id="cb47-26"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-26" tabindex="-1"></a>plt.legend([],[], frameon<span class="op">=</span><span class="va">False</span>)  <span class="co"># Hides duplicate legend</span></span>
+<span id="cb47-27"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-27" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb47-28"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb47-28" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<pre><code>/var/folders/m1/0dxpqygn2ds41kxkjgwtftr00000gn/T/ipykernel_43374/2750927964.py:13: FutureWarning: 
+
+The `ci` parameter is deprecated. Use `errorbar=&#39;sd&#39;` for the same effect.
+
+  sns.barplot(</code></pre>
+<p><img src="01-2-viz_files/01-2-viz_32_1.png" /></p>
 </div>
-
-
-
+<div id="r-code-9" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> R Code<a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#r-code-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb49-2"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb49-3"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb49-4"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-4" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb49-6"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-6" tabindex="-1"></a>iris <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb49-7"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-7" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-8" tabindex="-1"></a><span class="co"># Summarize mean and standard deviation</span></span>
+<span id="cb49-9"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-9" tabindex="-1"></a>summary_df <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span></span>
+<span id="cb49-10"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-10" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb49-11"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-11" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb49-12"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-12" tabindex="-1"></a>    <span class="at">mean_val =</span> <span class="fu">mean</span>(sepal_length),</span>
+<span id="cb49-13"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-13" tabindex="-1"></a>    <span class="at">sd_val =</span> <span class="fu">sd</span>(sepal_length),</span>
+<span id="cb49-14"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-14" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb49-15"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-15" tabindex="-1"></a>  )</span>
+<span id="cb49-16"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-16" tabindex="-1"></a></span>
+<span id="cb49-17"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-17" tabindex="-1"></a><span class="co"># Bar plot with error bars</span></span>
+<span id="cb49-18"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-18" tabindex="-1"></a><span class="fu">ggplot</span>(summary_df, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> mean_val, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb49-19"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-19" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">width =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb49-20"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-20" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_val <span class="sc">-</span> sd_val, <span class="at">ymax =</span> mean_val <span class="sc">+</span> sd_val), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb49-21"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-21" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb49-22"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-22" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb49-23"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Bar Plot with Error Bars: Sepal Length by Species&quot;</span>,</span>
+<span id="cb49-24"><a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html#cb49-24" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mean Sepal Length ± SD&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Bar plots</strong> with error bars are great for summarizing group-level differences in means. Using <code>hue</code> or <code>fill</code> ensures correct color mapping and avoids warnings in modern plotting libraries.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-show-group-summaries-using-a-dot-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +504,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

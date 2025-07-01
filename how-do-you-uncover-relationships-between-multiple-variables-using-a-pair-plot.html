@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 22 How do you uncover relationships between multiple variables using a pair plot? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 22 How do you uncover relationships between multiple variables using a pair plot? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 22 How do you uncover relationships between multiple variables using a pair plot? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-visualize-patterns-and-relationships-in-multivariate-data.html"/>
+<link rel="next" href="how-do-you-compare-distributions-across-groups-using-facet-plots.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot" class="section level1 hasAnchor" number="22">
+<h1><span class="header-section-number">Q&A 22</span> How do you uncover relationships between multiple variables using a pair plot?<a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-21" class="section level2 hasAnchor" number="22.1">
+<h2><span class="header-section-number">22.1</span> Explanation<a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#explanation-21" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>pair plot</strong> (or scatterplot matrix) allows you to explore relationships between several numeric variables at once. It shows:</p>
+<ul>
+<li><strong>Scatter plots</strong> for every variable pair<br />
+</li>
+<li><strong>Histograms</strong> or <strong>density plots</strong> on the diagonal<br />
+</li>
+<li>Optional color (<code>hue</code>) to separate groups</li>
+</ul>
+<p>It’s useful for spotting <strong>correlations</strong>, <strong>clusters</strong>, and <strong>outliers</strong> in multivariate data.</p>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-17" class="section level2 hasAnchor" number="22.2">
+<h2><span class="header-section-number">22.2</span> Python Code<a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#python-code-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb67-2"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb67-3"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb67-4"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-4" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb67-6"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-6" tabindex="-1"></a>diamonds <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb67-7"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-7" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-8" tabindex="-1"></a><span class="co"># Select relevant numeric variables + categorical hue</span></span>
+<span id="cb67-9"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-9" tabindex="-1"></a>subset <span class="op">=</span> diamonds[[<span class="st">&quot;carat&quot;</span>, <span class="st">&quot;depth&quot;</span>, <span class="st">&quot;table&quot;</span>, <span class="st">&quot;price&quot;</span>, <span class="st">&quot;cut&quot;</span>]]</span>
+<span id="cb67-10"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-10" tabindex="-1"></a></span>
+<span id="cb67-11"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-11" tabindex="-1"></a><span class="co"># Pair plot</span></span>
+<span id="cb67-12"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-12" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">&quot;ticks&quot;</span>)</span>
+<span id="cb67-13"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-13" tabindex="-1"></a>sns.pairplot(subset, hue<span class="op">=</span><span class="st">&quot;cut&quot;</span>, palette<span class="op">=</span><span class="st">&quot;Set2&quot;</span>, corner<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb67-14"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-14" tabindex="-1"></a>plt.suptitle(<span class="st">&quot;Pair Plot of Diamond Attributes by Cut&quot;</span>, y<span class="op">=</span><span class="fl">1.02</span>)</span>
+<span id="cb67-15"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-15" tabindex="-1"></a>plt.show()</span>
+<span id="cb67-16"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb67-16" tabindex="-1"></a></span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_57_0.png" /></p>
 </div>
-
-
-
+<div id="r-code-17" class="section level2 hasAnchor" number="22.3">
+<h2><span class="header-section-number">22.3</span> R Code<a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#r-code-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb68-2"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-2" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb68-3"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb68-4"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-4" tabindex="-1"></a></span>
+<span id="cb68-5"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-5" tabindex="-1"></a><span class="co"># Load dataset and sample for speed</span></span>
+<span id="cb68-6"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-6" tabindex="-1"></a>diamonds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb68-7"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-7" tabindex="-1"></a></span>
+<span id="cb68-8"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-8" tabindex="-1"></a><span class="co"># Pair plot</span></span>
+<span id="cb68-9"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-9" tabindex="-1"></a><span class="fu">ggpairs</span>(diamonds, <span class="fu">aes</span>(<span class="at">color =</span> cut), <span class="at">columns =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb68-10"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-10" tabindex="-1"></a>        <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;points&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)),</span>
+<span id="cb68-11"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-11" tabindex="-1"></a>        <span class="at">diag =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;densityDiag&quot;</span>)),</span>
+<span id="cb68-12"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-12" tabindex="-1"></a>        <span class="at">lower =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;smooth&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>))) <span class="sc">+</span></span>
+<span id="cb68-13"><a href="how-do-you-uncover-relationships-between-multiple-variables-using-a-pair-plot.html#cb68-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Pair plots</strong> are ideal for detecting multivariate patterns. Using color (<code>hue</code>) reveals how groups differ in structure and correlation.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-visualize-patterns-and-relationships-in-multivariate-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-compare-distributions-across-groups-using-facet-plots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +470,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

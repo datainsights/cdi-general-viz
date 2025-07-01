@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 33 How do you visualize overlaps using a Venn diagram? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 33 How do you visualize overlaps using a Venn diagram? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 33 How do you visualize overlaps using a Venn diagram? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html"/>
+<link rel="next" href="viz-summary.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-visualize-overlaps-using-a-venn-diagram" class="section level1 hasAnchor" number="33">
+<h1><span class="header-section-number">Q&A 33</span> How do you visualize overlaps using a Venn diagram?<a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#how-do-you-visualize-overlaps-using-a-venn-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-32" class="section level2 hasAnchor" number="33.1">
+<h2><span class="header-section-number">33.1</span> Explanation<a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#explanation-32" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>Venn diagram</strong> shows the overlap and differences between sets. It’s useful for comparing shared vs unique elements among groups.</p>
+<ul>
+<li>Works best for <strong>2 or 3 sets</strong></li>
+<li>Clearly shows commonality and uniqueness</li>
+<li>Use for membership, features, item inclusion</li>
+</ul>
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-26" class="section level2 hasAnchor" number="33.2">
+<h2><span class="header-section-number">33.2</span> Python Code<a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#python-code-26" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb92"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb92-1"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb92-1" tabindex="-1"></a><span class="im">from</span> matplotlib_venn <span class="im">import</span> venn2</span>
+<span id="cb92-2"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb92-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb92-3"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb92-3" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb92-4" tabindex="-1"></a>set1 <span class="op">=</span> <span class="bu">set</span>([<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>])</span>
+<span id="cb92-5"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb92-5" tabindex="-1"></a>set2 <span class="op">=</span> <span class="bu">set</span>([<span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>, <span class="st">&quot;E&quot;</span>, <span class="st">&quot;F&quot;</span>])</span>
+<span id="cb92-6"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb92-6" tabindex="-1"></a></span>
+<span id="cb92-7"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb92-7" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb92-8"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb92-8" tabindex="-1"></a>venn2([set1, set2], set_labels<span class="op">=</span>(<span class="st">&quot;Group 1&quot;</span>, <span class="st">&quot;Group 2&quot;</span>))</span>
+<span id="cb92-9"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb92-9" tabindex="-1"></a>plt.title(<span class="st">&quot;Venn Diagram of Two Sets&quot;</span>)</span>
+<span id="cb92-10"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb92-10" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_93_0.png" /></p>
 </div>
-
-
-
+<div id="r-code-27" class="section level2 hasAnchor" number="33.3">
+<h2><span class="header-section-number">33.3</span> R Code<a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#r-code-27" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb93-1" tabindex="-1"></a><span class="fu">library</span>(VennDiagram)</span>
+<span id="cb93-2"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb93-2" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb93-3" tabindex="-1"></a>venn.plot <span class="ot">&lt;-</span> <span class="fu">draw.pairwise.venn</span>(</span>
+<span id="cb93-4"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb93-4" tabindex="-1"></a>  <span class="at">area1 =</span> <span class="dv">4</span>, <span class="at">area2 =</span> <span class="dv">4</span>, <span class="at">cross.area =</span> <span class="dv">2</span>,</span>
+<span id="cb93-5"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb93-5" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;Group 1&quot;</span>, <span class="st">&quot;Group 2&quot;</span>),</span>
+<span id="cb93-6"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb93-6" tabindex="-1"></a>  <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;pink&quot;</span>),</span>
+<span id="cb93-7"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb93-7" tabindex="-1"></a>  <span class="at">ind =</span> <span class="cn">FALSE</span></span>
+<span id="cb93-8"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb93-8" tabindex="-1"></a>)</span>
+<span id="cb93-9"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb93-9" tabindex="-1"></a></span>
+<span id="cb93-10"><a href="how-do-you-visualize-overlaps-using-a-venn-diagram.html#cb93-10" tabindex="-1"></a><span class="fu">grid.draw</span>(venn.plot)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<blockquote>
+<p>✅ Use Venn diagrams for small set-based comparisons when the goal is to highlight overlap, not quantity.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="viz-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +456,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

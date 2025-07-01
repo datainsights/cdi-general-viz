@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 19 How do you visualize trends for multiple groups using a line plot? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 19 How do you visualize trends for multiple groups using a line plot? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 19 How do you visualize trends for multiple groups using a line plot? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-visualize-trends-across-ordered-groups-using-a-line-plot.html"/>
+<link rel="next" href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot" class="section level1 hasAnchor" number="19">
+<h1><span class="header-section-number">Q&A 19</span> How do you visualize trends for multiple groups using a line plot?<a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-18" class="section level2 hasAnchor" number="19.1">
+<h2><span class="header-section-number">19.1</span> Explanation<a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#explanation-18" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>line plot</strong> is ideal for visualizing trends over an ordered variable. In this example, we compute the <strong>average sepal length</strong> for each <strong>species</strong> across <strong>sepal width bins</strong>.</p>
+<p>This helps reveal <strong>group-specific patterns</strong> — for example, whether one species has consistently longer sepals as sepal width increases.</p>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-15" class="section level2 hasAnchor" number="19.2">
+<h2><span class="header-section-number">19.2</span> Python Code<a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#python-code-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb62-2"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb62-3"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-3" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb62-4"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-4" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb62-6"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-6" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb62-7"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-7" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-8" tabindex="-1"></a><span class="co"># Bin sepal_width to simulate order</span></span>
+<span id="cb62-9"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-9" tabindex="-1"></a>df[<span class="st">&quot;width_bin&quot;</span>] <span class="op">=</span> pd.cut(df[<span class="st">&quot;sepal_width&quot;</span>], bins<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb62-10"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-10" tabindex="-1"></a></span>
+<span id="cb62-11"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-11" tabindex="-1"></a><span class="co"># Group by bin and species, compute mean sepal length</span></span>
+<span id="cb62-12"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-12" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby([<span class="st">&quot;width_bin&quot;</span>, <span class="st">&quot;species&quot;</span>])[<span class="st">&quot;sepal_length&quot;</span>].mean().reset_index()</span>
+<span id="cb62-13"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-13" tabindex="-1"></a></span>
+<span id="cb62-14"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-14" tabindex="-1"></a><span class="co"># Convert bin to string for plotting</span></span>
+<span id="cb62-15"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-15" tabindex="-1"></a>grouped[<span class="st">&quot;width_bin&quot;</span>] <span class="op">=</span> grouped[<span class="st">&quot;width_bin&quot;</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb62-16"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-16" tabindex="-1"></a></span>
+<span id="cb62-17"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-17" tabindex="-1"></a><span class="co"># Line plot</span></span>
+<span id="cb62-18"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-18" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb62-19"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-19" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>grouped, x<span class="op">=</span><span class="st">&quot;width_bin&quot;</span>, y<span class="op">=</span><span class="st">&quot;sepal_length&quot;</span>, hue<span class="op">=</span><span class="st">&quot;species&quot;</span>, marker<span class="op">=</span><span class="st">&quot;o&quot;</span>)</span>
+<span id="cb62-20"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-20" tabindex="-1"></a>plt.title(<span class="st">&quot;Average Sepal Length by Sepal Width Bin and Species&quot;</span>)</span>
+<span id="cb62-21"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-21" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Sepal Width Bin&quot;</span>)</span>
+<span id="cb62-22"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-22" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Mean Sepal Length&quot;</span>)</span>
+<span id="cb62-23"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-23" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb62-24"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-24" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb62-25"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb62-25" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<pre><code>/var/folders/m1/0dxpqygn2ds41kxkjgwtftr00000gn/T/ipykernel_43374/1682245456.py:12: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  grouped = df.groupby([&quot;width_bin&quot;, &quot;species&quot;])[&quot;sepal_length&quot;].mean().reset_index()</code></pre>
+<p><img src="01-2-viz_files/01-2-viz_50_1.png" /></p>
 </div>
-
-
-
+<div id="r-code-15" class="section level2 hasAnchor" number="19.3">
+<h2><span class="header-section-number">19.3</span> R Code<a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#r-code-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb64-2"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb64-3"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-3" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb64-4"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-4" tabindex="-1"></a></span>
+<span id="cb64-5"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb64-6"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb64-7"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-7" tabindex="-1"></a></span>
+<span id="cb64-8"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-8" tabindex="-1"></a><span class="co"># Bin sepal width into 5 intervals</span></span>
+<span id="cb64-9"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb64-10"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">width_bin =</span> <span class="fu">cut</span>(sepal_width, <span class="at">breaks =</span> <span class="dv">5</span>))</span>
+<span id="cb64-11"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-11" tabindex="-1"></a></span>
+<span id="cb64-12"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-12" tabindex="-1"></a><span class="co"># Compute mean sepal length by bin and species</span></span>
+<span id="cb64-13"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-13" tabindex="-1"></a>grouped <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb64-14"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-14" tabindex="-1"></a>  <span class="fu">group_by</span>(width_bin, species) <span class="sc">%&gt;%</span></span>
+<span id="cb64-15"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-15" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_length =</span> <span class="fu">mean</span>(sepal_length), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb64-16"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-16" tabindex="-1"></a></span>
+<span id="cb64-17"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-17" tabindex="-1"></a><span class="co"># Line plot</span></span>
+<span id="cb64-18"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-18" tabindex="-1"></a><span class="fu">ggplot</span>(grouped, <span class="fu">aes</span>(<span class="at">x =</span> width_bin, <span class="at">y =</span> mean_length, <span class="at">group =</span> species, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb64-19"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-19" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb64-20"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-20" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb64-21"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-21" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb64-22"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-22" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Average Sepal Length by Sepal Width Bin and Species&quot;</span>,</span>
+<span id="cb64-23"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-23" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Sepal Width Bin&quot;</span>,</span>
+<span id="cb64-24"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-24" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Mean Sepal Length&quot;</span></span>
+<span id="cb64-25"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-25" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb64-26"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-26" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb64-27"><a href="how-do-you-visualize-trends-for-multiple-groups-using-a-line-plot.html#cb64-27" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<blockquote>
+<p>✅ <strong>Takeaway:</strong><br />
+Line plots with <strong>grouped trends</strong> help you compare patterns side by side — especially when studying how one variable behaves across subgroups. Use color or faceting to highlight these comparisons.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-visualize-trends-across-ordered-groups-using-a-line-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-show-overall-trend-patterns-using-a-smoothed-line.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +488,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {
