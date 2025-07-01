@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 10 How do you visualize overlapping group distributions using a ridge plot? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 10 How do you visualize overlapping group distributions using a ridge plot? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 10 How do you visualize overlapping group distributions using a ridge plot? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-compare-distribution-shape-and-summary-stats-using-a-violin-plot.html"/>
+<link rel="next" href="how-do-you-display-individual-data-points-by-category-using-a-swarm-plot.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Q&A 10</span> How do you visualize overlapping group distributions using a ridge plot?<a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-9" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Explanation<a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#explanation-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>ridge plot</strong> (also called a <strong>joyplot</strong>) displays <strong>smoothed density curves</strong> for a numerical variable across different groups. The curves are stacked and partially overlapping, making it easy to:</p>
+<ul>
+<li>Compare the <strong>shape</strong> of distributions</li>
+<li>Detect <strong>skewness</strong>, <strong>modality</strong>, and <strong>spread</strong></li>
+<li>Handle <strong>many groups</strong> in a compact space</li>
+</ul>
+<p>These plots are especially useful in <strong>Exploratory Data Analysis (EDA)</strong> when you want to:</p>
+<ul>
+<li>Compare distributions across levels of a categorical variable</li>
+<li>Reveal subtle differences in group behavior</li>
+<li>Highlight the overall distribution pattern clearly</li>
+</ul>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-6" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Python Code<a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#python-code-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb41-2"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb41-3"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb41-4"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-4" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb41-6"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-6" tabindex="-1"></a>iris <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb41-7"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-7" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-8" tabindex="-1"></a><span class="co"># Set theme</span></span>
+<span id="cb41-9"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-9" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">&quot;white&quot;</span>)</span>
+<span id="cb41-10"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-10" tabindex="-1"></a></span>
+<span id="cb41-11"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-11" tabindex="-1"></a><span class="co"># Create ridge-style KDE plot manually</span></span>
+<span id="cb41-12"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-12" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb41-13"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-13" tabindex="-1"></a>species_list <span class="op">=</span> iris[<span class="st">&quot;species&quot;</span>].unique()</span>
+<span id="cb41-14"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-14" tabindex="-1"></a></span>
+<span id="cb41-15"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-15" tabindex="-1"></a><span class="cf">for</span> i, species <span class="kw">in</span> <span class="bu">enumerate</span>(species_list):</span>
+<span id="cb41-16"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-16" tabindex="-1"></a>    subset <span class="op">=</span> iris[iris[<span class="st">&quot;species&quot;</span>] <span class="op">==</span> species]</span>
+<span id="cb41-17"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-17" tabindex="-1"></a>    sns.kdeplot(</span>
+<span id="cb41-18"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-18" tabindex="-1"></a>        subset[<span class="st">&quot;sepal_length&quot;</span>],</span>
+<span id="cb41-19"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-19" tabindex="-1"></a>        fill<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb41-20"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-20" tabindex="-1"></a>        label<span class="op">=</span>species,</span>
+<span id="cb41-21"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-21" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="fl">1.5</span>,</span>
+<span id="cb41-22"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-22" tabindex="-1"></a>        alpha<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb41-23"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-23" tabindex="-1"></a>        clip<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">8</span>),</span>
+<span id="cb41-24"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-24" tabindex="-1"></a>    )</span>
+<span id="cb41-25"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-25" tabindex="-1"></a></span>
+<span id="cb41-26"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-26" tabindex="-1"></a>plt.title(<span class="st">&quot;Ridge-style KDE Plot: Sepal Length by Species&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb41-27"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-27" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Sepal Length&quot;</span>)</span>
+<span id="cb41-28"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-28" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Density&quot;</span>)</span>
+<span id="cb41-29"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-29" tabindex="-1"></a>plt.legend(title<span class="op">=</span><span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb41-30"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-30" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb41-31"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb41-31" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_23_0.png" /></p>
 </div>
-
-
-
+<div id="r-code-6" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> R Code<a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#r-code-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb42-2"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb42-3"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-3" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb42-4"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-4" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb42-5"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-5" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-6" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb42-7"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-7" tabindex="-1"></a>iris <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb42-8"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-8" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-9" tabindex="-1"></a><span class="co"># Ridge plot using ggridges</span></span>
+<span id="cb42-10"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-10" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> sepal_length, <span class="at">y =</span> species, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb42-11"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-11" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">scale =</span> <span class="fl">1.2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb42-12"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-12" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">option =</span> <span class="st">&quot;D&quot;</span>) <span class="sc">+</span></span>
+<span id="cb42-13"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb42-14"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-14" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Ridge Plot: Sepal Length by Species&quot;</span>,</span>
+<span id="cb42-15"><a href="how-do-you-visualize-overlapping-group-distributions-using-a-ridge-plot.html#cb42-15" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Sepal Length&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Species&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Ridge plots</strong> provide a smooth, elegant comparison of multiple distributions. They’re especially useful when working with several categories and aiming to uncover differences in shape or spread.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-compare-distribution-shape-and-summary-stats-using-a-violin-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-display-individual-data-points-by-category-using-a-swarm-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +490,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

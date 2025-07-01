@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 25 How do you quantify linear relationships between numerical variables using a correlation heatmap? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 25 How do you quantify linear relationships between numerical variables using a correlation heatmap? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 25 How do you quantify linear relationships between numerical variables using a correlation heatmap? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-enhance-scatter-plots-by-adding-group-color-and-trend-lines.html"/>
+<link rel="next" href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap" class="section level1 hasAnchor" number="25">
+<h1><span class="header-section-number">Q&A 25</span> How do you quantify linear relationships between numerical variables using a correlation heatmap?<a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-24" class="section level2 hasAnchor" number="25.1">
+<h2><span class="header-section-number">25.1</span> Explanation<a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#explanation-24" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>correlation heatmap</strong> visually represents the strength and direction of linear relationships between numeric variables using <strong>Pearson’s correlation coefficient</strong> (r):</p>
+<ul>
+<li>Values range from <strong>-1</strong> (perfect negative) to <strong>+1</strong> (perfect positive)</li>
+<li>Darker or more saturated colors indicate stronger correlations</li>
+<li>Symmetric across the diagonal (correlation with self = 1)</li>
+</ul>
+<p>It’s a compact way to assess <strong>multicollinearity</strong>, <strong>feature redundancy</strong>, or <strong>predictive potential</strong>.</p>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-20" class="section level2 hasAnchor" number="25.2">
+<h2><span class="header-section-number">25.2</span> Python Code<a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#python-code-20" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb74-1"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb74-2"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb74-3"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb74-4"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-4" tabindex="-1"></a></span>
+<span id="cb74-5"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb74-6"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-6" tabindex="-1"></a>diamonds <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb74-7"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-7" tabindex="-1"></a></span>
+<span id="cb74-8"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-8" tabindex="-1"></a><span class="co"># Select numerical columns only</span></span>
+<span id="cb74-9"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-9" tabindex="-1"></a>num_df <span class="op">=</span> diamonds[[<span class="st">&quot;carat&quot;</span>, <span class="st">&quot;depth&quot;</span>, <span class="st">&quot;table&quot;</span>, <span class="st">&quot;price&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>]]</span>
+<span id="cb74-10"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-10" tabindex="-1"></a></span>
+<span id="cb74-11"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-11" tabindex="-1"></a><span class="co"># Compute correlation matrix</span></span>
+<span id="cb74-12"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-12" tabindex="-1"></a>corr <span class="op">=</span> num_df.corr(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb74-13"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-13" tabindex="-1"></a></span>
+<span id="cb74-14"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-14" tabindex="-1"></a><span class="co"># Heatmap</span></span>
+<span id="cb74-15"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-15" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb74-16"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-16" tabindex="-1"></a>sns.heatmap(corr, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">&quot;.2f&quot;</span>, cmap<span class="op">=</span><span class="st">&quot;coolwarm&quot;</span>, center<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb74-17"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-17" tabindex="-1"></a>plt.title(<span class="st">&quot;Correlation Heatmap of Diamond Variables&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb74-18"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-18" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb74-19"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb74-19" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_66_0.png" /></p>
 </div>
-
-
-
+<div id="r-code-20" class="section level2 hasAnchor" number="25.3">
+<h2><span class="header-section-number">25.3</span> R Code<a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#r-code-20" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb75-2"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb75-3"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-3" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb75-4"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-4" tabindex="-1"></a></span>
+<span id="cb75-5"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb75-6"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-6" tabindex="-1"></a>diamonds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb75-7"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-7" tabindex="-1"></a></span>
+<span id="cb75-8"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-8" tabindex="-1"></a><span class="co"># Compute correlation matrix</span></span>
+<span id="cb75-9"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-9" tabindex="-1"></a>num_vars <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> <span class="fu">select</span>(carat, depth, table, price, x, y, z)</span>
+<span id="cb75-10"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-10" tabindex="-1"></a>corr_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(num_vars, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
+<span id="cb75-11"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-11" tabindex="-1"></a></span>
+<span id="cb75-12"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-12" tabindex="-1"></a><span class="co"># Plot correlation heatmap</span></span>
+<span id="cb75-13"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-13" tabindex="-1"></a><span class="fu">corrplot</span>(corr_matrix, <span class="at">method =</span> <span class="st">&quot;color&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, <span class="at">addCoef.col =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb75-14"><a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html#cb75-14" tabindex="-1"></a>         <span class="at">tl.cex =</span> <span class="fl">0.8</span>, <span class="at">number.cex =</span> <span class="fl">0.7</span>, <span class="at">col =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;red&quot;</span>))(<span class="dv">200</span>))</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Correlation heatmaps</strong> are a fast and effective way to explore relationships between numerical variables and detect potential feature interactions.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-enhance-scatter-plots-by-adding-group-color-and-trend-lines.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +472,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

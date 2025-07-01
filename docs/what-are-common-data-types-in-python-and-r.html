@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 1 What are common data types in Python and R? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 1 What are common data types in Python and R? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 1 What are common data types in Python and R? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="next" href="how-do-you-inspect-variable-types-in-a-dataset.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="what-are-common-data-types-in-python-and-r" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Q&A 1</span> What are common data types in Python and R?<a href="what-are-common-data-types-in-python-and-r.html#what-are-common-data-types-in-python-and-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Explanation<a href="what-are-common-data-types-in-python-and-r.html#explanation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before you clean, visualize, or model data, it’s important to understand what types of values you’re working with — numeric, text, logical, or otherwise.</p>
+<p>These <strong>data types</strong> affect how values are stored, displayed, and processed in both Python and R — and they play a major role in how functions behave.</p>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="common-data-types-in-python-and-r" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Common Data Types in Python and R<a href="what-are-common-data-types-in-python-and-r.html#common-data-types-in-python-and-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="24%" />
+<col width="34%" />
+<col width="31%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Concept</th>
+<th align="left">Python (<code>pandas</code> / base)</th>
+<th align="left">R (<code>base</code>)</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Integer</td>
+<td align="left"><code>int</code></td>
+<td align="left"><code>integer</code></td>
+<td align="left">Use <code>astype(int)</code> or <code>as.integer()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Decimal Number</td>
+<td align="left"><code>float</code></td>
+<td align="left"><code>numeric</code>, <code>double</code></td>
+<td align="left"><code>numeric</code> is typically <code>double</code> in R</td>
+</tr>
+<tr class="odd">
+<td align="left">Text / String</td>
+<td align="left"><code>str</code>, <code>object</code> (pandas)</td>
+<td align="left"><code>character</code></td>
+<td align="left">Use <code>astype(str)</code> or <code>as.character()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Logical / Boolean</td>
+<td align="left"><code>bool</code></td>
+<td align="left"><code>logical</code></td>
+<td align="left"><code>True/False</code> in Python, <code>TRUE/FALSE</code> in R</td>
+</tr>
+<tr class="odd">
+<td align="left">Date / Time</td>
+<td align="left"><code>datetime64[ns]</code></td>
+<td align="left"><code>Date</code>, <code>POSIXct</code></td>
+<td align="left">Use <code>pd.to_datetime()</code> or <code>as.Date()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Category</td>
+<td align="left"><code>category</code></td>
+<td align="left"><code>factor</code></td>
+<td align="left">Ideal for grouping and modeling</td>
+</tr>
+<tr class="odd">
+<td align="left">Missing Values</td>
+<td align="left"><code>NaN</code></td>
+<td align="left"><code>NA</code></td>
+<td align="left">Use <code>pd.isna()</code> or <code>is.na()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Complex Numbers</td>
+<td align="left"><code>complex</code></td>
+<td align="left"><code>complex</code></td>
+<td align="left">Rare in typical data work</td>
+</tr>
+<tr class="odd">
+<td align="left">List</td>
+<td align="left"><code>list</code></td>
+<td align="left"><code>list</code></td>
+<td align="left">Flexible containers</td>
+</tr>
+<tr class="even">
+<td align="left">Dictionary</td>
+<td align="left"><code>dict</code></td>
+<td align="left"><code>named list</code>, <code>list()</code></td>
+<td align="left">R lists can mimic dictionaries</td>
+</tr>
+<tr class="odd">
+<td align="left">Tuple</td>
+<td align="left"><code>tuple</code></td>
+<td align="left"><code>c()</code>, <code>list()</code></td>
+<td align="left">No exact match — use vectors or lists</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>✅ Knowing the common data types — and how to interpret them — lays the foundation for all future data work.</p>
+</blockquote>
 </div>
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-inspect-variable-types-in-a-dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +512,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

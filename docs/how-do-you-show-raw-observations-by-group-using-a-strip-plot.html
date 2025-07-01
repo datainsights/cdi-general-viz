@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 12 How do you show raw observations by group using a strip plot? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 12 How do you show raw observations by group using a strip plot? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 12 How do you show raw observations by group using a strip plot? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-display-individual-data-points-by-category-using-a-swarm-plot.html"/>
+<link rel="next" href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,84 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-show-raw-observations-by-group-using-a-strip-plot" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Q&A 12</span> How do you show raw observations by group using a strip plot?<a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#how-do-you-show-raw-observations-by-group-using-a-strip-plot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-11" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Explanation<a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#explanation-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>strip plot</strong> is a simple yet powerful way to show every individual data point for a numerical variable grouped by a categorical variable. Unlike boxplots or violin plots, which summarize data, strip plots highlight <strong>raw measurements</strong>.</p>
+<p>They are best used when:</p>
+<ul>
+<li>You want <strong>complete visibility</strong> of individual observations<br />
+</li>
+<li>Your dataset is <strong>small or moderate</strong> in size<br />
+</li>
+<li>You want to explore <strong>variation and outliers</strong> without summary overlays</li>
+</ul>
+<p>Adding <strong>jitter</strong> (slight random displacement) and using vibrant <strong>palettes</strong> makes the visualization more readable and visually engaging.</p>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-8" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Python Code<a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#python-code-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb45-2"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb45-3"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb45-4"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-4" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb45-6"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-6" tabindex="-1"></a>iris <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb45-7"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-7" tabindex="-1"></a></span>
+<span id="cb45-8"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-8" tabindex="-1"></a><span class="co"># Set style</span></span>
+<span id="cb45-9"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-9" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">&quot;whitegrid&quot;</span>)</span>
+<span id="cb45-10"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-10" tabindex="-1"></a></span>
+<span id="cb45-11"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-11" tabindex="-1"></a><span class="co"># Warning-free strip plot with hue and palette</span></span>
+<span id="cb45-12"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-12" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb45-13"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-13" tabindex="-1"></a>sns.stripplot(</span>
+<span id="cb45-14"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-14" tabindex="-1"></a>    data<span class="op">=</span>iris,</span>
+<span id="cb45-15"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-15" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;species&quot;</span>,</span>
+<span id="cb45-16"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-16" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;sepal_length&quot;</span>,</span>
+<span id="cb45-17"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-17" tabindex="-1"></a>    hue<span class="op">=</span><span class="st">&quot;species&quot;</span>,</span>
+<span id="cb45-18"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-18" tabindex="-1"></a>    jitter<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb45-19"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-19" tabindex="-1"></a>    palette<span class="op">=</span><span class="st">&quot;Set2&quot;</span>,</span>
+<span id="cb45-20"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-20" tabindex="-1"></a>    dodge<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb45-21"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-21" tabindex="-1"></a>    size<span class="op">=</span><span class="dv">6</span>,</span>
+<span id="cb45-22"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-22" tabindex="-1"></a>    alpha<span class="op">=</span><span class="fl">0.8</span></span>
+<span id="cb45-23"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-23" tabindex="-1"></a>)</span>
+<span id="cb45-24"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-24" tabindex="-1"></a>plt.title(<span class="st">&quot;Strip Plot: Sepal Length by Species&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb45-25"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-25" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb45-26"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-26" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Sepal Length&quot;</span>)</span>
+<span id="cb45-27"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-27" tabindex="-1"></a>plt.legend([],[], frameon<span class="op">=</span><span class="va">False</span>)  <span class="co"># Hides duplicate legend</span></span>
+<span id="cb45-28"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-28" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb45-29"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb45-29" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_29_0.png" /></p>
 </div>
-
-
-
+<div id="r-code-8" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> R Code<a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#r-code-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb46-2"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb46-3"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-3" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-4" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb46-5"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-5" tabindex="-1"></a>iris <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb46-6"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-6" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-7" tabindex="-1"></a><span class="co"># Strip plot with jitter and color</span></span>
+<span id="cb46-8"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-8" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> sepal_length, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb46-9"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-9" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb46-10"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-10" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-11"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-11" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb46-12"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Strip Plot: Sepal Length by Species&quot;</span>,</span>
+<span id="cb46-13"><a href="how-do-you-show-raw-observations-by-group-using-a-strip-plot.html#cb46-13" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sepal Length&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Strip plots</strong> offer a direct view of all data points in each category. They are perfect for spotting data spread, clusters, or outliers—especially when combined with color and jitter for clarity.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-display-individual-data-points-by-category-using-a-swarm-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +484,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

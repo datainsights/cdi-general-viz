@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 31 How do you create a donut chart to show part-to-whole proportions? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 31 How do you create a donut chart to show part-to-whole proportions? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 31 How do you create a donut chart to show part-to-whole proportions? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-visualize-simple-proportions-using-a-pie-chart.html"/>
+<link rel="next" href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions" class="section level1 hasAnchor" number="31">
+<h1><span class="header-section-number">Q&A 31</span> How do you create a donut chart to show part-to-whole proportions?<a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-30" class="section level2 hasAnchor" number="31.1">
+<h2><span class="header-section-number">31.1</span> Explanation<a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#explanation-30" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>donut chart</strong> is a variation of the pie chart with a central hole. It helps communicate part-to-whole relationships in a slightly more readable way than standard pie charts.</p>
+<ul>
+<li>Ideal for categorical variables with a few levels</li>
+<li>Central space can be used for annotations or percentages</li>
+</ul>
+<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb87-2"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb87-3"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-3" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-4" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb87-5"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-5" tabindex="-1"></a>species_counts <span class="op">=</span> df[<span class="st">&quot;species&quot;</span>].value_counts()</span>
+<span id="cb87-6"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-6" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.Set2.colors</span>
+<span id="cb87-7"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-7" tabindex="-1"></a></span>
+<span id="cb87-8"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-8" tabindex="-1"></a>plt.pie(species_counts, labels<span class="op">=</span>species_counts.index, colors<span class="op">=</span>colors,</span>
+<span id="cb87-9"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-9" tabindex="-1"></a>        autopct<span class="op">=</span><span class="st">&#39;</span><span class="sc">%1.1f%%</span><span class="st">&#39;</span>, startangle<span class="op">=</span><span class="dv">90</span>, wedgeprops<span class="op">=</span>{<span class="st">&#39;width&#39;</span>: <span class="fl">0.4</span>})</span>
+<span id="cb87-10"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-10" tabindex="-1"></a>plt.title(<span class="st">&quot;Iris Species Distribution&quot;</span>)</span>
+<span id="cb87-11"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-11" tabindex="-1"></a>plt.axis(<span class="st">&quot;equal&quot;</span>)</span>
+<span id="cb87-12"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb87-12" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_84_0.png" /></p>
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="r-code-25" class="section level2 hasAnchor" number="31.2">
+<h2><span class="header-section-number">31.2</span> R Code<a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#r-code-25" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb88-2"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb88-3"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-3" tabindex="-1"></a></span>
+<span id="cb88-4"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb88-5"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-5" tabindex="-1"></a>df_counts <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb88-6"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-6" tabindex="-1"></a>  <span class="fu">count</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb88-7"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n), <span class="at">ypos =</span> <span class="fu">cumsum</span>(prop) <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> prop)</span>
+<span id="cb88-8"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-8" tabindex="-1"></a></span>
+<span id="cb88-9"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-9" tabindex="-1"></a><span class="fu">ggplot</span>(df_counts, <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> prop, <span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb88-10"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-10" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb88-11"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-11" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb88-12"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-12" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fl">0.5</span>, <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb88-13"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-13" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb88-14"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-14" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> ypos, <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">percent</span>(prop)), <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb88-15"><a href="how-do-you-create-a-donut-chart-to-show-part-to-whole-proportions.html#cb88-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Iris Species Distribution (Donut Chart)&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<blockquote>
+<p>✅ Donut charts are more stylish than pie charts, but they carry the same limitations—use them only for small, clear part-to-whole comparisons.</p>
+</blockquote>
 </div>
-
-
-
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-visualize-simple-proportions-using-a-pie-chart.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-visualize-hierarchical-part-to-whole-relationships-using-a-treemap.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +459,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

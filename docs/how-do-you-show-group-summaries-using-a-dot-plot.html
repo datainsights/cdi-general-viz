@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 14 How do you show group summaries using a dot plot? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 14 How do you show group summaries using a dot plot? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 14 How do you show group summaries using a dot plot? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html"/>
+<link rel="next" href="how-do-you-show-frequency-patterns-using-a-histogram.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,113 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-show-group-summaries-using-a-dot-plot" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Q&A 14</span> How do you show group summaries using a dot plot?<a href="how-do-you-show-group-summaries-using-a-dot-plot.html#how-do-you-show-group-summaries-using-a-dot-plot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-13" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Explanation<a href="how-do-you-show-group-summaries-using-a-dot-plot.html#explanation-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>dot plot</strong> is a simple yet effective way to compare <strong>group-level summary statistics</strong>, such as the <strong>mean price</strong> of diamonds per quality grade. It’s particularly helpful when:</p>
+<ul>
+<li>You want to emphasize <strong>central values</strong> without clutter<br />
+</li>
+<li>The number of groups is <strong>moderate</strong><br />
+</li>
+<li>You want a clean alternative to a bar chart</li>
+</ul>
+<p>Dot plots are enhanced with color, size, and error bars for visual clarity. They’re perfect for <strong>summary comparisons</strong> like mean or median ± standard deviation.</p>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-10" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Python Code<a href="how-do-you-show-group-summaries-using-a-dot-plot.html#python-code-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb50-2"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb50-3"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb50-4"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-4" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb50-6"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-6" tabindex="-1"></a>diamonds <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb50-7"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-7" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-8" tabindex="-1"></a><span class="co"># Compute group summary</span></span>
+<span id="cb50-9"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-9" tabindex="-1"></a>summary_df <span class="op">=</span> diamonds.groupby(<span class="st">&quot;cut&quot;</span>, as_index<span class="op">=</span><span class="va">False</span>).agg(</span>
+<span id="cb50-10"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-10" tabindex="-1"></a>    mean_price<span class="op">=</span>(<span class="st">&quot;price&quot;</span>, <span class="st">&quot;mean&quot;</span>),</span>
+<span id="cb50-11"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-11" tabindex="-1"></a>    sd_price<span class="op">=</span>(<span class="st">&quot;price&quot;</span>, <span class="st">&quot;std&quot;</span>)</span>
+<span id="cb50-12"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-12" tabindex="-1"></a>)</span>
+<span id="cb50-13"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-13" tabindex="-1"></a></span>
+<span id="cb50-14"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-14" tabindex="-1"></a><span class="co"># Create dot plot</span></span>
+<span id="cb50-15"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-15" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">&quot;whitegrid&quot;</span>)</span>
+<span id="cb50-16"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-16" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb50-17"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-17" tabindex="-1"></a>sns.pointplot(</span>
+<span id="cb50-18"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-18" tabindex="-1"></a>    data<span class="op">=</span>summary_df,</span>
+<span id="cb50-19"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-19" tabindex="-1"></a>    x<span class="op">=</span><span class="st">&quot;cut&quot;</span>,</span>
+<span id="cb50-20"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-20" tabindex="-1"></a>    y<span class="op">=</span><span class="st">&quot;mean_price&quot;</span>,</span>
+<span id="cb50-21"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-21" tabindex="-1"></a>    <span class="co"># palette=&quot;Set2&quot;,</span></span>
+<span id="cb50-22"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-22" tabindex="-1"></a>    errorbar<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb50-23"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-23" tabindex="-1"></a>    join<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb50-24"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-24" tabindex="-1"></a>    markers<span class="op">=</span><span class="st">&quot;o&quot;</span></span>
+<span id="cb50-25"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-25" tabindex="-1"></a>    </span>
+<span id="cb50-26"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-26" tabindex="-1"></a>)</span>
+<span id="cb50-27"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-27" tabindex="-1"></a></span>
+<span id="cb50-28"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-28" tabindex="-1"></a><span class="co"># Add error bars manually</span></span>
+<span id="cb50-29"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-29" tabindex="-1"></a>plt.errorbar(</span>
+<span id="cb50-30"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-30" tabindex="-1"></a>    x<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(summary_df)),</span>
+<span id="cb50-31"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-31" tabindex="-1"></a>    y<span class="op">=</span>summary_df[<span class="st">&quot;mean_price&quot;</span>],</span>
+<span id="cb50-32"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-32" tabindex="-1"></a>    yerr<span class="op">=</span>summary_df[<span class="st">&quot;sd_price&quot;</span>],</span>
+<span id="cb50-33"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-33" tabindex="-1"></a>    fmt<span class="op">=</span><span class="st">&#39;none&#39;</span>,</span>
+<span id="cb50-34"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-34" tabindex="-1"></a>    capsize<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb50-35"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-35" tabindex="-1"></a>    color<span class="op">=</span><span class="st">&#39;black&#39;</span></span>
+<span id="cb50-36"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-36" tabindex="-1"></a>)</span>
+<span id="cb50-37"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-37" tabindex="-1"></a></span>
+<span id="cb50-38"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-38" tabindex="-1"></a>plt.title(<span class="st">&quot;Dot Plot with Error Bars: Diamond Price by Cut&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb50-39"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-39" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Cut&quot;</span>)</span>
+<span id="cb50-40"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-40" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Mean Price ± SD&quot;</span>)</span>
+<span id="cb50-41"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-41" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb50-42"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-42" tabindex="-1"></a>plt.show()</span>
+<span id="cb50-43"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb50-43" tabindex="-1"></a></span></code></pre></div>
+<pre><code>/var/folders/m1/0dxpqygn2ds41kxkjgwtftr00000gn/T/ipykernel_43374/1871995440.py:17: UserWarning: 
+
+The `join` parameter is deprecated and will be removed in v0.15.0. You can remove the line between points with `linestyle=&#39;none&#39;`.
+
+  sns.pointplot(</code></pre>
+<p><img src="01-2-viz_files/01-2-viz_35_1.png" /></p>
 </div>
-
-
-
+<div id="r-code-10" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> R Code<a href="how-do-you-show-group-summaries-using-a-dot-plot.html#r-code-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb52-2"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb52-3"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb52-4"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-4" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb52-6"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-6" tabindex="-1"></a>diamonds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb52-7"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-7" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-8" tabindex="-1"></a><span class="co"># Compute mean and SD</span></span>
+<span id="cb52-9"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-9" tabindex="-1"></a>summary_df <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb52-10"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-10" tabindex="-1"></a>  <span class="fu">group_by</span>(cut) <span class="sc">%&gt;%</span></span>
+<span id="cb52-11"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-11" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb52-12"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-12" tabindex="-1"></a>    <span class="at">mean_price =</span> <span class="fu">mean</span>(price),</span>
+<span id="cb52-13"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-13" tabindex="-1"></a>    <span class="at">sd_price =</span> <span class="fu">sd</span>(price),</span>
+<span id="cb52-14"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-14" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span></span>
+<span id="cb52-15"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-15" tabindex="-1"></a>  )</span>
+<span id="cb52-16"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-16" tabindex="-1"></a></span>
+<span id="cb52-17"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-17" tabindex="-1"></a><span class="co"># Dot plot with error bars</span></span>
+<span id="cb52-18"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-18" tabindex="-1"></a><span class="fu">ggplot</span>(summary_df, <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> mean_price, <span class="at">color =</span> cut)) <span class="sc">+</span></span>
+<span id="cb52-19"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-19" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb52-20"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-20" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> mean_price <span class="sc">-</span> sd_price, <span class="at">ymax =</span> mean_price <span class="sc">+</span> sd_price), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb52-21"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-21" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-22"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-22" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb52-23"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Dot Plot with Error Bars: Diamond Price by Cut&quot;</span>,</span>
+<span id="cb52-24"><a href="how-do-you-show-group-summaries-using-a-dot-plot.html#cb52-24" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Cut&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Mean Price ± SD&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Dot plots</strong> are a compact, precise way to compare summary statistics across groups. When used with color and error bars, they highlight differences in group means with clarity and elegance.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-show-group-means-and-variability-using-a-bar-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-show-frequency-patterns-using-a-histogram.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +513,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

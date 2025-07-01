@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 26 How do you visualize patterns across multiple numeric features using a parallel coordinates plot? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 26 How do you visualize patterns across multiple numeric features using a parallel coordinates plot? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 26 How do you visualize patterns across multiple numeric features using a parallel coordinates plot? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html"/>
+<link rel="next" href="how-do-you-uncover-structure-in-high-dimensional-data-using-a-pca-plot.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot" class="section level1 hasAnchor" number="26">
+<h1><span class="header-section-number">Q&A 26</span> How do you visualize patterns across multiple numeric features using a parallel coordinates plot?<a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-25" class="section level2 hasAnchor" number="26.1">
+<h2><span class="header-section-number">26.1</span> Explanation<a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#explanation-25" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>parallel coordinates plot</strong> lets you explore high-dimensional patterns by plotting each feature on a vertical axis. Each observation is a line crossing all axes.</p>
+<p>It helps you:</p>
+<ul>
+<li>Spot <strong>group patterns</strong> across all variables<br />
+</li>
+<li>Detect <strong>outliers</strong> and <strong>overlaps</strong><br />
+</li>
+<li>Understand <strong>feature trends</strong> in classification problems</li>
+</ul>
+<p>Coloring by category (e.g., <code>cut</code>) helps distinguish clusters or groups.</p>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-21" class="section level2 hasAnchor" number="26.2">
+<h2><span class="header-section-number">26.2</span> Python Code<a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#python-code-21" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb76"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb76-1"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb76-2"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-2" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb76-3"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-3" tabindex="-1"></a><span class="im">from</span> pandas.plotting <span class="im">import</span> parallel_coordinates</span>
+<span id="cb76-4"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-4" tabindex="-1"></a></span>
+<span id="cb76-5"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb76-6"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-6" tabindex="-1"></a>diamonds <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb76-7"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-7" tabindex="-1"></a></span>
+<span id="cb76-8"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-8" tabindex="-1"></a><span class="co"># Sample for performance</span></span>
+<span id="cb76-9"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-9" tabindex="-1"></a>subset <span class="op">=</span> diamonds[[<span class="st">&quot;carat&quot;</span>, <span class="st">&quot;depth&quot;</span>, <span class="st">&quot;table&quot;</span>, <span class="st">&quot;price&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>, <span class="st">&quot;cut&quot;</span>]].sample(<span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb76-10"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-10" tabindex="-1"></a></span>
+<span id="cb76-11"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-11" tabindex="-1"></a><span class="co"># Normalize numeric features</span></span>
+<span id="cb76-12"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-12" tabindex="-1"></a>normalized <span class="op">=</span> subset.copy()</span>
+<span id="cb76-13"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-13" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> [<span class="st">&quot;carat&quot;</span>, <span class="st">&quot;depth&quot;</span>, <span class="st">&quot;table&quot;</span>, <span class="st">&quot;price&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>]:</span>
+<span id="cb76-14"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-14" tabindex="-1"></a>    normalized[col] <span class="op">=</span> (subset[col] <span class="op">-</span> subset[col].<span class="bu">min</span>()) <span class="op">/</span> (subset[col].<span class="bu">max</span>() <span class="op">-</span> subset[col].<span class="bu">min</span>())</span>
+<span id="cb76-15"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-15" tabindex="-1"></a></span>
+<span id="cb76-16"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-16" tabindex="-1"></a><span class="co"># Parallel coordinates plot</span></span>
+<span id="cb76-17"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-17" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb76-18"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-18" tabindex="-1"></a>parallel_coordinates(normalized, class_column<span class="op">=</span><span class="st">&quot;cut&quot;</span>, color<span class="op">=</span>[<span class="st">&quot;#66c2a5&quot;</span>, <span class="st">&quot;#fc8d62&quot;</span>, <span class="st">&quot;#8da0cb&quot;</span>, <span class="st">&quot;#e78ac3&quot;</span>, <span class="st">&quot;#a6d854&quot;</span>])</span>
+<span id="cb76-19"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-19" tabindex="-1"></a>plt.title(<span class="st">&quot;Parallel Coordinates Plot: Diamond Features by Cut&quot;</span>)</span>
+<span id="cb76-20"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-20" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Normalized Value&quot;</span>)</span>
+<span id="cb76-21"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-21" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb76-22"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-22" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb76-23"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb76-23" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="01-2-viz_files/01-2-viz_69_0.png" /></p>
 </div>
-
-
-
+<div id="r-code-21" class="section level2 hasAnchor" number="26.3">
+<h2><span class="header-section-number">26.3</span> R Code<a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#r-code-21" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb77-2"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-2" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb77-3"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb77-4"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-4" tabindex="-1"></a></span>
+<span id="cb77-5"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-5" tabindex="-1"></a><span class="co"># Load and sample dataset</span></span>
+<span id="cb77-6"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-6" tabindex="-1"></a>diamonds <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/diamonds_sample.csv&quot;</span>)</span>
+<span id="cb77-7"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-7" tabindex="-1"></a>subset <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span> <span class="fu">select</span>(carat, depth, table, price, x, y, z, cut) <span class="sc">%&gt;%</span> <span class="fu">sample_n</span>(<span class="dv">500</span>)</span>
+<span id="cb77-8"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-8" tabindex="-1"></a></span>
+<span id="cb77-9"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-9" tabindex="-1"></a><span class="co"># Normalize numeric columns</span></span>
+<span id="cb77-10"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-10" tabindex="-1"></a>subset_norm <span class="ot">&lt;-</span> subset <span class="sc">%&gt;%</span></span>
+<span id="cb77-11"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(carat, depth, table, price, x, y, z), <span class="sc">~</span> (. <span class="sc">-</span> <span class="fu">min</span>(.)) <span class="sc">/</span> (<span class="fu">max</span>(.) <span class="sc">-</span> <span class="fu">min</span>(.))))</span>
+<span id="cb77-12"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-12" tabindex="-1"></a></span>
+<span id="cb77-13"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-13" tabindex="-1"></a><span class="co"># Parallel coordinates plot</span></span>
+<span id="cb77-14"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-14" tabindex="-1"></a><span class="fu">ggparcoord</span>(<span class="at">data =</span> subset_norm,</span>
+<span id="cb77-15"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-15" tabindex="-1"></a>           <span class="at">columns =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>,</span>
+<span id="cb77-16"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-16" tabindex="-1"></a>           <span class="at">groupColumn =</span> <span class="dv">8</span>,</span>
+<span id="cb77-17"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-17" tabindex="-1"></a>           <span class="at">scale =</span> <span class="st">&quot;uniminmax&quot;</span>,</span>
+<span id="cb77-18"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-18" tabindex="-1"></a>           <span class="at">alphaLines =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb77-19"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-19" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb77-20"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb77-21"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-21" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Parallel Coordinates Plot: Diamond Features by Cut&quot;</span>,</span>
+<span id="cb77-22"><a href="how-do-you-visualize-patterns-across-multiple-numeric-features-using-a-parallel-coordinates-plot.html#cb77-22" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Features&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Normalized Value&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Parallel coordinates plots</strong> help you detect patterns across multiple features simultaneously, especially when colored by category.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-quantify-linear-relationships-between-numerical-variables-using-a-correlation-heatmap.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-uncover-structure-in-high-dimensional-data-using-a-pca-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +487,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {

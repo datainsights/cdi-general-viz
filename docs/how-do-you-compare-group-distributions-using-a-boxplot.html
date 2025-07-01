@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Visualizing Data Patterns with Python and R | viz.knit</title>
+  <title>Q&A 8 How do you compare group distributions using a boxplot? | viz.knit</title>
   <meta name="description" content="Visualizing Data Patterns with Python and R" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta property="og:title" content="Q&A 8 How do you compare group distributions using a boxplot? | viz.knit" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="https://github.com/datainsights/cdi-general-viz/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Visualizing Data Patterns with Python and R | viz.knit" />
+  <meta name="twitter:title" content="Q&A 8 How do you compare group distributions using a boxplot? | viz.knit" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="welcome-to-the-general-data-science-visualization-viz-layer.html"/>
+<link rel="prev" href="how-do-you-visualize-category-counts-using-a-bar-plot.html"/>
+<link rel="next" href="how-do-you-compare-distribution-shape-and-summary-stats-using-a-violin-plot.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -376,24 +376,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><div class="line-block">Visualizing Data Patterns with Python and R</div></h1>
-<h2 class="subtitle"><em><div class="line-block"><img src="images/ds-viz-cover.png" style="width:75.0%" /><br />
-Last updated: July 01, 2025</div></em></h2>
+<div id="how-do-you-compare-group-distributions-using-a-boxplot" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Q&A 8</span> How do you compare group distributions using a boxplot?<a href="how-do-you-compare-group-distributions-using-a-boxplot.html#how-do-you-compare-group-distributions-using-a-boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="explanation-7" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Explanation<a href="how-do-you-compare-group-distributions-using-a-boxplot.html#explanation-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>boxplot</strong> is a standard way to visualize the distribution of a numerical variable across categories. It summarizes key statistics:</p>
+<ul>
+<li><strong>Median</strong> (central line)</li>
+<li><strong>Interquartile range (IQR)</strong> (box edges)</li>
+<li><strong>Minimum and maximum</strong> (whiskers)</li>
+<li><strong>Outliers</strong> (points outside whiskers)</li>
+</ul>
+<p>Boxplots are ideal for detecting:</p>
+<ul>
+<li>Differences in <strong>central tendency</strong></li>
+<li>Variation in <strong>spread</strong></li>
+<li>Presence of <strong>outliers</strong></li>
+<li>Asymmetry or skewness in the distribution</li>
+</ul>
+<p>Adding color and overlaying raw data (e.g., strip plots) improves interpretability.</p>
+<hr />
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
+<div id="python-code-4" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Python Code<a href="how-do-you-compare-group-distributions-using-a-boxplot.html#python-code-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb33-2"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-2" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb33-3"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb33-4"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-4" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-5" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb33-6"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-6" tabindex="-1"></a>iris <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb33-7"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-7" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-8" tabindex="-1"></a><span class="co"># Set style</span></span>
+<span id="cb33-9"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-9" tabindex="-1"></a>sns.<span class="bu">set</span>(style<span class="op">=</span><span class="st">&quot;whitegrid&quot;</span>)</span>
+<span id="cb33-10"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-10" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-11" tabindex="-1"></a><span class="co"># Basic boxplot</span></span>
+<span id="cb33-12"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-12" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb33-13"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-13" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>iris, x<span class="op">=</span><span class="st">&quot;species&quot;</span>, y<span class="op">=</span><span class="st">&quot;sepal_length&quot;</span>, palette<span class="op">=</span><span class="st">&quot;viridis&quot;</span>)</span>
+<span id="cb33-14"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-14" tabindex="-1"></a>plt.title(<span class="st">&quot;Boxplot: Sepal Length by Species&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb33-15"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-15" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Species&quot;</span>)</span>
+<span id="cb33-16"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-16" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Sepal Length&quot;</span>)</span>
+<span id="cb33-17"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-17" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb33-18"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-18" tabindex="-1"></a>plt.show()</span>
+<span id="cb33-19"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-19" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-20" tabindex="-1"></a><span class="co"># Boxplot with overlaid strip plot (raw points)</span></span>
+<span id="cb33-21"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-21" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb33-22"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-22" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>iris, x<span class="op">=</span><span class="st">&quot;species&quot;</span>, y<span class="op">=</span><span class="st">&quot;sepal_length&quot;</span>, palette<span class="op">=</span><span class="st">&quot;viridis&quot;</span>, width<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb33-23"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-23" tabindex="-1"></a>sns.stripplot(data<span class="op">=</span>iris, x<span class="op">=</span><span class="st">&quot;species&quot;</span>, y<span class="op">=</span><span class="st">&quot;sepal_length&quot;</span>, color<span class="op">=</span><span class="st">&quot;black&quot;</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, jitter<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-24"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-24" tabindex="-1"></a>plt.title(<span class="st">&quot;Boxplot with Raw Points: Sepal Length by Species&quot;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb33-25"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-25" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb33-26"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-26" tabindex="-1"></a>plt.show()</span>
+<span id="cb33-27"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-27" tabindex="-1"></a></span>
+<span id="cb33-28"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb33-28" tabindex="-1"></a></span></code></pre></div>
+<pre><code>/var/folders/m1/0dxpqygn2ds41kxkjgwtftr00000gn/T/ipykernel_43374/1537151029.py:13: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(data=iris, x=&quot;species&quot;, y=&quot;sepal_length&quot;, palette=&quot;viridis&quot;)</code></pre>
+<p><img src="01-2-viz_files/01-2-viz_17_1.png" /></p>
+<pre><code>/var/folders/m1/0dxpqygn2ds41kxkjgwtftr00000gn/T/ipykernel_43374/1537151029.py:22: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(data=iris, x=&quot;species&quot;, y=&quot;sepal_length&quot;, palette=&quot;viridis&quot;, width=0.6)</code></pre>
+<p><img src="01-2-viz_files/01-2-viz_17_3.png" /></p>
 </div>
-
-
-
+<div id="r-code-4" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> R Code<a href="how-do-you-compare-group-distributions-using-a-boxplot.html#r-code-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb36-2"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb36-3"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-3" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-4" tabindex="-1"></a><span class="co"># Load dataset</span></span>
+<span id="cb36-5"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-5" tabindex="-1"></a>iris <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/iris.csv&quot;</span>)</span>
+<span id="cb36-6"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-6" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-7" tabindex="-1"></a><span class="co"># Basic boxplot</span></span>
+<span id="cb36-8"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-8" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> sepal_length)) <span class="sc">+</span></span>
+<span id="cb36-9"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-9" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-10"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-10" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb36-11"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb36-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Boxplot: Sepal Length by Species&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sepal Length&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb37-1" tabindex="-1"></a><span class="co"># Boxplot with overlaid jittered points</span></span>
+<span id="cb37-2"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb37-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> sepal_length)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb37-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;lightgreen&quot;</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb37-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb37-5"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb37-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb37-6"><a href="how-do-you-compare-group-distributions-using-a-boxplot.html#cb37-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Boxplot with Raw Points: Sepal Length by Species&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Species&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Sepal Length&quot;</span>)</span></code></pre></div>
+<p><img src="viz_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<hr />
+<blockquote>
+<p>✅ <strong>Boxplots</strong> offer a compact summary of distribution and spread for each category. When enhanced with color and raw points, they reveal both statistical structure and individual variation clearly.</p>
+</blockquote>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="welcome-to-the-general-data-science-visualization-viz-layer.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="how-do-you-visualize-category-counts-using-a-bar-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-do-you-compare-distribution-shape-and-summary-stats-using-a-violin-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -424,7 +504,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/index.Rmd",
+    "link": "https://github.com/datainsights/cdi-general-ds/edit/main/01-2-viz.Rmd",
     "text": "Edit"
   },
   "history": {
