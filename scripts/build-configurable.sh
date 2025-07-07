@@ -50,12 +50,3 @@ else
   echo "Usage: $0 {viz-gitbook|viz-pdf}"
   exit 1
 fi
-
-echo "🧹 Cleaning up Visualization build files..."
-rm -rf viz-pdf/_bookdown_files/
-rm -f ./*.rds
-echo "✅ Cleanup complete."
-
-# Remove symlink to avoid accidental reuse
-rm -f index.Rmd
-rm -f _bookdown.yml

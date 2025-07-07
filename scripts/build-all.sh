@@ -2,6 +2,9 @@
 
 set -e
 
+total_start=$(date +%s)  # ⬅️ Start total timer
+
+
 # Define the list of Jupyter Notebook filenames (without extension)
 NOTEBOOK_NAMES=(
     "01-2-viz"
@@ -49,7 +52,7 @@ done
 echo "🚀 Starting full build for all levels..."
 
 # levels=("eda-gitbook" "viz-gitbook" "viz-pdf" "stats-gitbook" "stats-pdf" "ml-gitbook" "ml-pdf")
-levels=("viz-gitbook")
+levels=("viz-gitbook" "viz-pdf")
 for level in "${levels[@]}"; do
   echo ""
   echo "🔁 Building: $level"
@@ -70,3 +73,11 @@ echo "✅ Cleanup complete."
 # Remove symlink to avoid accidental reuse
 rm -f index.Rmd
 rm -f _bookdown.yml
+
+
+total_end=$(date +%s)
+total_elapsed=$((total_end - total_start))
+minutes=$((total_elapsed / 60))
+seconds=$((total_elapsed % 60))
+
+echo -e "\n⏱️  Total build time: ${minutes} min ${seconds} sec"
